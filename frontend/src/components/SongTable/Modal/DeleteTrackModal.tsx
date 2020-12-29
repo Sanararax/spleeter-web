@@ -88,13 +88,9 @@ class DeleteTrackModal extends React.Component<Props, State> {
           <Modal.Title>Confirm track deletion</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {errors.length > 0 && (
-            <Alert variant="danger">
-              {errors.map((val, idx) => (
-                <div key={idx}>{val}</div>
-              ))}
-            </Alert>
-          )}
+          <Alert variant="danger">
+            <div>Functionality disabled for demo purposes.</div>
+          </Alert>
           <div>
             Are you sure you want to delete &ldquo;{song.artist} - {song.title}&rdquo; and all of its mixes?
           </div>
@@ -103,7 +99,7 @@ class DeleteTrackModal extends React.Component<Props, State> {
           <Button variant="outline-secondary" onClick={this.onHide}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={this.onSubmit}>
+          <Button variant="danger" disabled>
             Delete
           </Button>
         </Modal.Footer>

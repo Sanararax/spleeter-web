@@ -106,9 +106,11 @@ class UploadModal extends React.Component<Props, State> {
    * Make API request to delete SourceFile from DB and filesystem
    */
   deleteCurrentFile = (): void => {
+    /*
     if (this.state.fileId !== -1) {
       axios.delete('/api/source-file/file/', { data: { id: this.state.fileId } });
     }
+    */
   };
 
   /**
@@ -132,17 +134,20 @@ class UploadModal extends React.Component<Props, State> {
    * Called when back button is clicked.
    */
   onBack = (): void => {
+    /*
     if (this.state.detailsStep) {
       this.setState({
         detailsStep: false,
       });
     }
+    */
   };
 
   /**
    * Called when primary button is clicked.
    */
   onNext = (): void => {
+    /*
     if (!this.state.detailsStep) {
       this.setState({
         detailsStep: true,
@@ -185,6 +190,7 @@ class UploadModal extends React.Component<Props, State> {
           });
         });
     }
+    */
   };
 
   /**
@@ -192,6 +198,7 @@ class UploadModal extends React.Component<Props, State> {
    * @param query Query string
    */
   youtubeSearch = (query: string): void => {
+    /*
     this.setState({
       fetchStatus: YouTubeLinkFetchStatus.IS_FETCHING,
     });
@@ -215,6 +222,7 @@ class UploadModal extends React.Component<Props, State> {
           fetchStatus: YouTubeLinkFetchStatus.ERROR,
         });
       });
+    */
   };
 
   /**
@@ -226,6 +234,7 @@ class UploadModal extends React.Component<Props, State> {
    * Called when artist or title fields change.
    */
   onDetailFieldChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    /*
     event.preventDefault();
     const { name, value } = event.target;
 
@@ -233,12 +242,14 @@ class UploadModal extends React.Component<Props, State> {
       this.resetErrors();
       this.setState({ [name]: value } as any);
     }
+    */
   };
 
   /**
    * Called when value of YouTube search text field changes.
    */
   onYouTubeFieldChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    /*
     event.preventDefault();
     const { name, value } = event.target;
 
@@ -296,12 +307,14 @@ class UploadModal extends React.Component<Props, State> {
           }
         });
     }
+    */
   };
 
   /**
    * Called when file upload status changes.
    */
   onFileUploadStatusChange = ({ meta, remove, xhr }: IFileWithMeta, status: StatusValue): void => {
+    /*
     const aborted =
       status === 'aborted' ||
       status === 'rejected_file_type' ||
@@ -351,6 +364,7 @@ class UploadModal extends React.Component<Props, State> {
         });
       }
     }
+    */
   };
 
   /**
@@ -358,12 +372,14 @@ class UploadModal extends React.Component<Props, State> {
    * @param video Video that was clicked
    */
   onSearchResultClick = (video: YouTubeVideo): void => {
+    /*
     this.setState({
       artist: he.decode(video.parsed_artist),
       title: he.decode(video.parsed_title),
       link: getYouTubeLinkForId(video.id),
       detailsStep: true,
     });
+    */
   };
 
   render(): JSX.Element {
@@ -400,32 +416,28 @@ class UploadModal extends React.Component<Props, State> {
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {errors.length > 0 && (
-            <Alert variant="danger">
-              {errors.map((val, idx) => (
-                <div key={idx}>{val}</div>
-              ))}
-            </Alert>
-          )}
+          <Alert variant="danger">
+            <div>Functionality disabled for demo purposes.</div>
+          </Alert>
           {detailsStep ? (
             <UploadModalForm artist={artist} title={title} handleChange={this.onDetailFieldChange} />
           ) : (
             <div>
               <Dropzone
-                disabled={!!link}
+                disabled
                 maxFiles={1}
                 maxSizeBytes={MAX_FILE_BYTES}
                 multiple={false}
                 accept={ALLOWED_EXT}
                 onChangeStatus={this.onFileUploadStatusChange}
-                getUploadParams={() => ({ url: '/api/source-file/file/' })}
+                // getUploadParams={() => ({ url: '/api/source-file/file/' })}
                 InputComponent={CustomInput}
                 PreviewComponent={CustomPreview}
               />
               <hr className="hr-text" data-content="OR" />
               <YouTubeForm
                 fetchStatus={fetchStatus}
-                disabled={droppedFile}
+                disabled
                 value={query || link}
                 searchResponse={searchResponse}
                 handleChange={this.onYouTubeFieldChange}

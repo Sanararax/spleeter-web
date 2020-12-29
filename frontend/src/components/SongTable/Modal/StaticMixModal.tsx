@@ -211,6 +211,9 @@ class StaticMixModal extends React.Component<Props, State> {
           <Modal.Title>Create static mix</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <Alert variant="danger">
+            <div>Functionality disabled for demo purposes.</div>
+          </Alert>
           <StaticMixModalForm
             song={song}
             handleCheckboxChange={this.handleCheckboxChange}
@@ -236,7 +239,7 @@ class StaticMixModal extends React.Component<Props, State> {
           <Button variant="outline-danger" onClick={this.onHide}>
             Cancel
           </Button>
-          <Button variant="primary" disabled={allChecked || noneChecked || invalidAlpha} onClick={this.onSubmit}>
+          <Button variant="primary" disabled>
             Create Mix
           </Button>
         </Modal.Footer>
